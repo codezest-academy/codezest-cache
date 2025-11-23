@@ -1,159 +1,225 @@
-# .context - Planning & Context Files
+# .context - Documentation & Context Files
 
-This folder contains all planning, design, and progress tracking documents for the `@codezest/db` package.
-
----
-
-## 📋 Files in This Folder
-
-### 1. **PLAN_OVERVIEW.md** (26KB)
-**Purpose**: Complete database schema design with all 30 models  
-**Use**: Reference for schema details, relationships, and examples  
-**Audience**: Developers implementing the schema
-
-**Contains**:
-- Complete data model (Auth, Learning, Payments, Notifications, Activity)
-- Prisma schema examples for each model
-- User journey examples
-- Database models summary
-- Key enums and relationships
-
----
-
-### 2. **IMPLEMENTATION.md** (9.5KB)
-**Purpose**: Step-by-step implementation checklist  
-**Use**: Track what needs to be built and in what order  
-**Audience**: Developers implementing the package
-
-**Contains**:
-- 16 files to create
-- 30 models breakdown by service
-- 12 enums to define
-- 8 implementation steps
-- Success criteria
-- Reference documents
-
----
-
-### 3. **PROGRESS.md** (6.7KB)
-**Purpose**: Real-time progress tracking and session notes  
-**Use**: Resume work across sessions, track completion  
-**Audience**: AI agents and developers (especially for rate-limited sessions)
-
-**Contains**:
-- Overall progress (Planning 100%, Implementation 0%)
-- Completed tasks checklist
-- Pending tasks checklist
-- Session notes with timestamps
-- Update log
-- Metrics (files created, models defined)
-- Quick resume instructions
-
----
-
-### 4. **UPDATES_SUMMARY.md** (10.8KB)
-**Purpose**: Summary of Payment microservice and AI/Manual Analysis additions  
-**Use**: Understand what was added beyond initial scope  
-**Audience**: Stakeholders and developers
-
-**Contains**:
-- Payment microservice overview (4 models)
-- AI/Manual analysis system (2 models)
-- Updated architecture (5 microservices, 30 models)
-- Use cases and code examples
-- Deployment strategy
-
----
-
-## 🎯 How to Use These Files
-
-### For New Developers
-1. Start with **PLAN_OVERVIEW.md** to understand the schema
-2. Read **UPDATES_SUMMARY.md** to see what was added
-3. Check **IMPLEMENTATION.md** for what needs to be built
-4. Use **PROGRESS.md** to see current status
-
-### For Resuming Work
-1. Read **PROGRESS.md** first (current state)
-2. Check **IMPLEMENTATION.md** for next unchecked item
-3. Refer to **PLAN_OVERVIEW.md** for schema details
-4. Update **PROGRESS.md** after completing tasks
-
-### For AI Agents (Rate Limited Sessions)
-```bash
-# Quick context retrieval
-cat .context/PROGRESS.md          # Current status
-cat .context/IMPLEMENTATION.md    # What's next
-cat .context/PLAN_OVERVIEW.md     # Schema details
-```
+This folder contains all planning, design, and progress tracking documents for the `@codezest-academy/codezest-cache` package and related CodeZest project documentation.
 
 ---
 
 ## 📁 Folder Structure
 
 ```
-codezest-db/
-├── .context/                      # 👈 You are here
-│   ├── README.md                  # This file
-│   ├── PLAN_OVERVIEW.md           # Complete schema design
-│   ├── IMPLEMENTATION.md          # Implementation checklist
-│   ├── PROGRESS.md                # Progress tracker
-│   └── UPDATES_SUMMARY.md         # Payment & analysis summary
-│
-├── package.json                   # (To be created)
-├── tsconfig.json                  # (To be created)
-├── .gitignore                     # (To be created)
-├── .npmignore                     # (To be created)
-├── README.md                      # (To be created)
-├── ARCHITECTURE.md                # (To be created)
-├── .env.example                   # (To be created)
-│
-├── prisma/
-│   └── schema.prisma              # (To be created)
-│
-└── src/
-    ├── index.ts                   # (To be created)
-    ├── types.ts                   # (To be created)
-    └── mongo/
-        ├── index.ts               # (To be created)
-        └── collections.ts         # (To be created)
+.context/
+├── this-repo/           # Cache package specific documentation
+├── project-wide/        # CodeZest overall architecture & planning
+├── guides/              # General development guides
+└── README.md            # This file
 ```
+
+---
+
+## 📂 this-repo/ - Cache Package Documentation
+
+Cache-specific documentation in chronological/logical order:
+
+| File                                                             | Purpose                                | Size  |
+| ---------------------------------------------------------------- | -------------------------------------- | ----- |
+| [01_SETUP.md](this-repo/01_SETUP.md)                             | Initial setup instructions             | 7.7KB |
+| [02_CACHE_DETAILS.md](this-repo/02_CACHE_DETAILS.md)             | Implementation details                 | 4.1KB |
+| [03_CACHE_CONSUMING.md](this-repo/03_CACHE_CONSUMING.md)         | How to consume this package            | 2.5KB |
+| [04_IMPLEMENTATION_PLAN.md](this-repo/04_IMPLEMENTATION_PLAN.md) | Original implementation plan           | 3KB   |
+| [05_DELPATTERN_BUG.md](this-repo/05_DELPATTERN_BUG.md)           | Complete delPattern bug analysis & fix | 13KB  |
+| [06_MIGRATION_v1.0.2.md](this-repo/06_MIGRATION_v1.0.2.md)       | Migration guide for v1.0.2             | 8.5KB |
+| [07_PUBLISHING_STATUS.md](this-repo/07_PUBLISHING_STATUS.md)     | Publishing status & workflow           | 3.2KB |
+| [08_PROGRESS.md](this-repo/08_PROGRESS.md)                       | Progress tracking                      | 2.2KB |
+
+### Quick Start
+
+```bash
+# For new developers
+cat .context/this-repo/01_SETUP.md
+cat .context/this-repo/02_CACHE_DETAILS.md
+
+# For consuming this package
+cat .context/this-repo/03_CACHE_CONSUMING.md
+
+# For understanding the delPattern bug fix
+cat .context/this-repo/05_DELPATTERN_BUG.md
+```
+
+---
+
+## 🌐 project-wide/ - CodeZest Overall Documentation
+
+Project-wide architecture and planning documents:
+
+| File                                                                | Purpose                             | Size  |
+| ------------------------------------------------------------------- | ----------------------------------- | ----- |
+| [01_PLAN_OVERVIEW.md](project-wide/01_PLAN_OVERVIEW.md)             | Complete CodeZest platform plan     | 26KB  |
+| [02_ARCHITECTURE_DESIGN.md](project-wide/02_ARCHITECTURE_DESIGN.md) | Overall architecture design         | 16KB  |
+| [03_DB_CONSUMING.md](project-wide/03_DB_CONSUMING.md)               | How to consume @codezest-academy/db | 2.5KB |
+
+### Quick Start
+
+```bash
+# Understand overall CodeZest architecture
+cat .context/project-wide/01_PLAN_OVERVIEW.md
+cat .context/project-wide/02_ARCHITECTURE_DESIGN.md
+
+# Learn about shared database package
+cat .context/project-wide/03_DB_CONSUMING.md
+```
+
+---
+
+## 📚 guides/ - General Development Guides
+
+Reusable guides for development tools and workflows:
+
+| File                                                                        | Purpose                        | Size  |
+| --------------------------------------------------------------------------- | ------------------------------ | ----- |
+| [01_REDIS_GUIDE.md](guides/01_REDIS_GUIDE.md)                               | Redis setup (dev & production) | 5KB   |
+| [02_DOCKER_COMPOSE_LOCAL_SETUP.md](guides/02_DOCKER_COMPOSE_LOCAL_SETUP.md) | Local Docker setup             | 3KB   |
+| [03_GITHUB_ACTIONS_GUIDE.md](guides/03_GITHUB_ACTIONS_GUIDE.md)             | CI/CD with GitHub Actions      | 3.9KB |
+
+### Quick Start
+
+```bash
+# Setup Redis locally
+cat .context/guides/01_REDIS_GUIDE.md
+
+# Setup Docker Compose
+cat .context/guides/02_DOCKER_COMPOSE_LOCAL_SETUP.md
+
+# Understand CI/CD pipeline
+cat .context/guides/03_GITHUB_ACTIONS_GUIDE.md
+```
+
+---
+
+## 🎯 Usage Scenarios
+
+### For New Developers
+
+1. **Start with this-repo/**
+
+   ```bash
+   cat .context/this-repo/01_SETUP.md
+   cat .context/this-repo/02_CACHE_DETAILS.md
+   ```
+
+2. **Understand the project context**
+
+   ```bash
+   cat .context/project-wide/01_PLAN_OVERVIEW.md
+   cat .context/project-wide/02_ARCHITECTURE_DESIGN.md
+   ```
+
+3. **Setup your environment**
+   ```bash
+   cat .context/guides/01_REDIS_GUIDE.md
+   cat .context/guides/02_DOCKER_COMPOSE_LOCAL_SETUP.md
+   ```
+
+### For Consuming This Package
+
+```bash
+cat .context/this-repo/03_CACHE_CONSUMING.md
+```
+
+### For Understanding the delPattern Bug
+
+```bash
+cat .context/this-repo/05_DELPATTERN_BUG.md
+```
+
+### For AI Agents (Context Retrieval)
+
+Files are numbered chronologically for easy sequential reading:
+
+```bash
+# Cache-specific context
+ls -1 .context/this-repo/
+
+# Project-wide context
+ls -1 .context/project-wide/
+
+# General guides
+ls -1 .context/guides/
+```
+
+---
+
+## 📝 File Naming Convention
+
+All files follow a chronological/logical naming pattern:
+
+```
+<number>_<DESCRIPTIVE_NAME>.md
+```
+
+- **Number**: Indicates reading order (01, 02, 03, etc.)
+- **Descriptive Name**: Clear, uppercase with underscores
+- **Extension**: Always `.md` (Markdown)
+
+**Examples**:
+
+- `01_SETUP.md` - Read first
+- `02_CACHE_DETAILS.md` - Read second
+- `05_DELPATTERN_BUG.md` - Read fifth
 
 ---
 
 ## 🔄 When to Update
 
-### PLAN_OVERVIEW.md
-- When schema design changes
-- When new models are added
-- When relationships change
+### this-repo/
 
-### IMPLEMENTATION.md
-- When adding new files to create
-- When implementation steps change
-- When success criteria change
+- **01_SETUP.md**: When setup process changes
+- **02_CACHE_DETAILS.md**: When implementation details change
+- **03_CACHE_CONSUMING.md**: When usage API changes
+- **08_PROGRESS.md**: After each work session
 
-### PROGRESS.md
-- After completing each task
-- After each work session
-- When blockers are resolved
-- When metrics change
+### project-wide/
 
-### UPDATES_SUMMARY.md
-- When major features are added
-- When architecture changes
-- When new microservices are added
+- **01_PLAN_OVERVIEW.md**: When overall plan changes
+- **02_ARCHITECTURE_DESIGN.md**: When architecture evolves
+- **03_DB_CONSUMING.md**: When DB package API changes
+
+### guides/
+
+- **01_REDIS_GUIDE.md**: When Redis setup changes
+- **02_DOCKER_COMPOSE_LOCAL_SETUP.md**: When Docker config changes
+- **03_GITHUB_ACTIONS_GUIDE.md**: When CI/CD workflow changes
 
 ---
 
-## 📝 Notes
+## 🗑️ Deprecated Files
+
+The following files have been consolidated or moved:
+
+- ~~`CACHE_DELPATTERN_BUG_ANALYSIS.md`~~ → Consolidated into `this-repo/05_DELPATTERN_BUG.md`
+- ~~`DELPATTERN_FIX_GUIDE.md`~~ → Consolidated into `this-repo/05_DELPATTERN_BUG.md`
+- ~~`DELPATTERN_FIX_SUMMARY.md`~~ → Consolidated into `this-repo/05_DELPATTERN_BUG.md`
+
+---
+
+## 📊 Statistics
+
+- **Total Files**: 14 (8 this-repo + 3 project-wide + 3 guides)
+- **Total Size**: ~80KB
+- **Folders**: 3 (this-repo, project-wide, guides)
+- **Consolidated**: 3 delPattern files → 1 comprehensive doc
+
+---
+
+## 📖 Notes
 
 - These files are **not published** to npm (excluded in `.npmignore`)
 - These files **are committed** to git (for team context)
 - Keep these files **up to date** for seamless collaboration
 - Use these files for **onboarding** new team members
+- Files are numbered for **easy context retrieval** by AI agents
 
 ---
 
-**Last Updated**: 2025-11-21  
-**Status**: Planning complete, ready for implementation
+**Last Updated**: 2025-11-24  
+**Reorganized**: 2025-11-24  
+**Structure Version**: 2.0
