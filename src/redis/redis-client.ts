@@ -1,6 +1,6 @@
 import Redis, { RedisOptions } from 'ioredis';
 import { CacheClientInterface } from '../interfaces/cache-client.interface';
-import { LoggerInterface } from '../interfaces/logger.interface';
+import { LoggerInterface } from '../common/logger';
 
 export interface RedisCacheClientOptions extends RedisOptions {
   logger?: LoggerInterface;

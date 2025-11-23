@@ -2,7 +2,7 @@ import { CacheClientInterface } from './interfaces/cache-client.interface';
 import { RedisCacheClient, RedisCacheClientOptions } from './redis/redis-client';
 
 export * from './interfaces/cache-client.interface';
-export * from './interfaces/logger.interface';
+export * from './common/logger';
 export * from './redis/redis-client';
 
 /**
