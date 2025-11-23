@@ -15,6 +15,12 @@ A robust, type-safe, and production-ready caching library for the CodeZest micro
 npm install @codezest-academy/cache
 ```
 
+## ⚙️ Local Development Setup
+
+For local development, we recommend using Docker Compose to run a Redis instance. This ensures a consistent environment across all developer machines.
+
+Please refer to the [Local Docker Compose Setup Guide](.context/DOCKER_COMPOSE_LOCAL_SETUP.md) for detailed instructions on how to set up and manage Redis using Docker Compose.
+
 ## 🛠️ Usage
 
 ### 1. Initialization
