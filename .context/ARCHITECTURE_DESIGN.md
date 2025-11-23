@@ -120,9 +120,9 @@ _Dependency Rule_: Depends on _Application_.
   - Use `kebab-case` for folder names (e.g., `user-profile`, `auth-service`).
   - `index.ts` files are used for barrel exports within directories.
 - **Classes**: `PascalCase` (e.g., `UserService`).
-- **Interfaces**: `PascalCase` + `Interface` suffix (e.g., `UserRepositoryInterface`).
+- **Interfaces**: `PascalCase` (e.g., `UserRepository`).
 - **Functions/Methods/Vars**: `camelCase` (e.g., `getUserById`, `userName`).
-- **Constants**: `SCREAMING_SNAKE_CASE` (e.g., `JWT_SECRET`).
+- **Constants**: `camelCase` (e.g., `jwtSecret`, `maxLoginAttempts`).
 - **Enums**: `PascalCase` (e.g., `UserRole.Admin`).
 - **DTOs**: `PascalCase` + `Dto` suffix (e.g., `CreateUserDto`).
 - **Mappers**: `PascalCase` + `Mapper` suffix (e.g., `UserMapper`).
@@ -242,3 +242,123 @@ A hybrid approach using **Synchronous** for reads/critical writes and **Asynchro
 - **Strategy Pattern**: Different payment providers (Stripe, PayPal).
 - **Observer/Pub-Sub**: Handling domain events.
 - **Adapter Pattern**: Integrating third-party services (Email, Payment Gateways).
+
+---
+
+## 9. Code Style Enforcement
+
+### ESLint Naming Convention Rules
+
+To enforce the naming conventions outlined above, the following ESLint rules are applied:
+
+```json
+[
+  "error",
+
+  // ──────────────────────────────────────────────────────────────
+  // 1. General PascalCase for types, classes, enums, etc.
+  // ──────────────────────────────────────────────────────────────
+  {
+    "selector": ["class", "interface", "typeAlias", "enum", "typeParameter"],
+    "format": ["PascalCase"],
+    "leadingUnderscore": "forbid",
+    "trailingUnderscore": "forbid"
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // 2. Block I-prefix and "Interface" suffix on interfaces
+  // ──────────────────────────────────────────────────────────────
+  {
+    "selector": "interface",
+    "format": ["PascalCase"],
+    "custom": {
+      "regex": "^(I[^a-z]|.*Interface$)",
+      "match": false
+    }
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // 3. Specific suffixes we DO want (DTO, Service, Controller, etc.)
+  // ──────────────────────────────────────────────────────────────
+  {
+    "selector": "class",
+    "suffix": ["Dto"],
+    "format": ["PascalCase"],
+    "custom": {
+      "regex": "Dto$",
+      "match": true
+    }
+  },
+  {
+    "selector": "class",
+    "suffix": [
+      "Service",
+      "Controller",
+      "Repository",
+      "Mapper",
+      "Guard",
+      "Interceptor",
+      "Filter",
+      "Provider"
+    ],
+    "format": ["PascalCase"]
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // 4. Variables & functions → camelCase (const allowed UPPER too)
+  // ──────────────────────────────────────────────────────────────
+  {
+    "selector": ["variable", "function", "parameter"],
+    "format": ["camelCase", "PascalCase"], // PascalCase allowed for React components, etc.
+    "leadingUnderscore": "allow"
+  },
+
+  // Allow UPPER_CASE only for const variables (classic constants)
+  {
+    "selector": "variable",
+    "modifiers": ["const"],
+    "format": ["camelCase", "UPPER_CASE"],
+    "leadingUnderscore": "allow"
+  },
+
+  // Exported const variables (config objects, etc.) → usually camelCase
+  {
+    "selector": "variable",
+    "modifiers": ["const", "exported"],
+    "format": ["camelCase", "UPPER_CASE"]
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // 5. Enum members → PascalCase (UserRole.Admin)
+  // ──────────────────────────────────────────────────────────────
+  {
+    "selector": "enumMember",
+    "format": ["PascalCase"]
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // 6. Properties & methods → camelCase
+  // ──────────────────────────────────────────────────────────────
+  {
+    "selector": [
+      "objectLiteralProperty",
+      "classProperty",
+      "classMethod",
+      "objectLiteralMethod",
+      "parameterProperty"
+    ],
+    "format": ["camelCase", "UPPER_CASE"],
+    "leadingUnderscore": "allow"
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // 7. Optional: Allow _id style private fields (common in Prisma entities)
+  // ──────────────────────────────────────────────────────────────
+  {
+    "selector": "classProperty",
+    "modifiers": ["private"],
+    "format": ["camelCase"],
+    "leadingUnderscore": "require"
+  }
+]
+```

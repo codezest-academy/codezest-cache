@@ -1,6 +1,6 @@
-# 📦 Consuming @codezest-academy/cache
+# 📦 Consuming @codezest-academy/codezest-cache
 
-This guide explains how to use the `@codezest-academy/cache` library in other microservices (e.g., `codezest-auth`, `codezest-api`).
+This guide explains how to use the `@codezest-academy/codezest-cache` library in other microservices (e.g., `codezest-auth`, `codezest-api`).
 
 ## 1. 🛠️ Configuration
 
@@ -33,7 +33,7 @@ Ensure `GITHUB_TOKEN` is available in your workflow.
 ## 2. 📥 Installation
 
 ```bash
-npm install @codezest-academy/cache@latest
+npm install @codezest-academy/codezest-cache@latest
 ```
 
 ---
@@ -45,8 +45,8 @@ npm install @codezest-academy/cache@latest
 Create a singleton instance in your service's infrastructure layer (e.g., `src/infrastructure/cache/index.ts`).
 
 ```typescript
-import { createCacheClient } from "@codezest-academy/cache";
-import { logger } from "../../common/logger"; // Your service's logger
+import { createCacheClient } from '@codezest-academy/codezest-cache';
+import { logger } from '../../common/logger'; // Your service's logger
 
 // Create the client with connection details and logger
 export const cache = createCacheClient({
@@ -62,7 +62,7 @@ export const cache = createCacheClient({
 Inject or import the cache client into your application services.
 
 ```typescript
-import { cache } from "../infrastructure/cache";
+import { cache } from '../infrastructure/cache';
 
 export class UserService {
   async getUser(userId: string) {

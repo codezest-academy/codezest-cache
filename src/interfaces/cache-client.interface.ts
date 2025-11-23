@@ -23,8 +23,9 @@ export interface CacheClientInterface {
   /**
    * Delete all keys matching a pattern.
    * @param pattern The pattern to match (e.g., "user:*").
+   * @returns The number of keys deleted.
    */
-  delPattern(pattern: string): Promise<void>;
+  delPattern(pattern: string): Promise<number>;
 
   /**
    * Clear the entire cache.

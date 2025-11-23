@@ -58,27 +58,63 @@ export class RedisCacheClient implements CacheClientInterface {
     }
   }
 
-  async delPattern(pattern: string): Promise<void> {
+  async delPattern(pattern: string): Promise<number> {
     try {
-      const stream = this.client.scanStream({
-        match: pattern,
-      });
+      return new Promise((resolve, reject) => {
+        const stream = this.client.scanStream({
+          match: pattern,
+          count: 100, // Process in batches of 100
+        });
 
-      stream.on('data', (keys: string[]) => {
-        if (keys.length) {
-          const pipeline = this.client.pipeline();
-          keys.forEach((key) => {
-            pipeline.del(key);
-          });
-          pipeline.exec();
-        }
-      });
+        let deletedCount = 0;
+        const deletionPromises: Promise<any>[] = [];
 
-      stream.on('end', () => {
-        // Scan complete
+        stream.on('data', (keys: string[]) => {
+          if (keys.length) {
+            const pipeline = this.client.pipeline();
+            keys.forEach((key) => {
+              pipeline.del(key);
+            });
+
+            // Store the promise and track deletions
+            const execPromise = pipeline
+              .exec()
+              .then((results) => {
+                // Each result is [error, value]
+                // For DEL, value is the number of keys deleted
+                results?.forEach(([err, count]) => {
+                  if (!err && typeof count === 'number') {
+                    deletedCount += count;
+                  }
+                });
+              })
+              .catch((err) => {
+                this.logger.error(`Error executing pipeline for pattern ${pattern}:`, err);
+              });
+
+            deletionPromises.push(execPromise);
+          }
+        });
+
+        stream.on('end', async () => {
+          try {
+            // Wait for all pipeline executions to complete
+            await Promise.all(deletionPromises);
+            this.logger.info(`Deleted ${deletedCount} keys matching pattern: ${pattern}`);
+            resolve(deletedCount);
+          } catch (error) {
+            reject(error);
+          }
+        });
+
+        stream.on('error', (error) => {
+          this.logger.error(`Error scanning pattern ${pattern}:`, error);
+          reject(error);
+        });
       });
     } catch (error) {
       this.logger.error(`Error deleting pattern ${pattern} from Redis:`, error);
+      throw error;
     }
   }
 
