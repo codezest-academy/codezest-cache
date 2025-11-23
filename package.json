@@ -1,6 +1,6 @@
 {
   "name": "@codezest-academy/codezest-cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared caching library for CodeZest microservices using Redis",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
